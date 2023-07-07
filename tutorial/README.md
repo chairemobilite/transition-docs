@@ -44,9 +44,47 @@ But at this point, there should be data available in Transition!
 
 ## Lesson 2: Prepare imported data for calculations
 
-### Refresh calculation data
+Once the data is imported, it is available in the `Agencies and lines` panel. The `Stop nodes` will also display all the stop nodes locations imported with the data, as shown in the screenshot below.
+
+![Lesson 2: agencies, lines and stop nodes](images/lesson2_agenciesLinesStopNodes.png)
+
+But it is not yet ready to be used in calculations. The following steps will prepare the newly imported data so that we can simulate and analyze it.
 
 ### Create scenario
+
+A scenario in Transition represents a transit network, a state of the transit offer, for a certain date. It can group many services, from many agencies. It can also include only or exclude some data (lines, modes, etc). All calculations (routing, accessibility maps, etc) are made against a scenario.
+
+To create a new scenario, click on the `Scenarios` menu item on the left. It will open the `Scenarios` panel.
+
+![Lesson 2: scenario menu](images/lesson2_scenariosMenu.png)
+
+Then click on the `New scenario` button. Give a name for this scenario.
+
+Then select the services to include in this scenario. If the services were filtered at import, you may select them all, otherwise, only the services for the day to test should be selected. All trips for the selected services will be used for routing, so mixing weekday and weekend services will artificially increase the offer!
+
+![Lesson 2: scenario edit](images/lesson2_scenarioEdit.png)
+
+The map shows the lines that are part of this scenario. Also, they are listed at the bottom of the panel, after the actions buttons.
+
+![Lesson 2: display scenario data](images/lesson2_scenarioDisplayData.png)
+
+Click on the save button ![save button](images/buttonSave.png) to save the scenario.
+
+### Refresh calculation data
+
+Some data needs to be pre-calculated, to avoid lengthy calculations. When the transit data has been edited and is ready for calculation, do the following steps:
+
+1. Refresh the transferrable nodes: The walking distance from each nodes to all other nodes is calculated (up to a max of 20 minutes). This is used to determine possible transfer times and distances during a trip.
+
+2. Save data to cache for the routing engine: Transition uses [trRouting](https://github.com/chairemobilite/trRouting) as the routing engine. `trRouting` reads its data from a cache that needs to be manually updated when there are changes to the transit data in Transition.
+
+3. Start the routing engine: By default, when the instance starts, the routing engine is not running. It needs to be manually started. 
+
+Usually, the icons will be yellow when there are un-processed data and will turn white once it the action has been executed. The following screenshot shows the buttons for each step. *These manual steps are error prone and we are working to make them automatic.*
+
+![Lesson 2: refresh calculation data](images/lesson2_refreshCalculationData.png)
+
+The data is now ready for calculation!
 
 ## Lesson 3: Test the imported data by calcuting routes
 
@@ -65,6 +103,8 @@ But at this point, there should be data available in Transition!
 ## Lesson 7: Create new services/agencies/lines and validate results
 
 ### Create new service
+
+### Create new nodes
 
 ### Create new agency
 
