@@ -187,11 +187,81 @@ As we see, the number of alternatives alone should not be considered as a metric
 
 ## Lesson 6: Edit existing lines
 
+In this lesson, we will learn to modify existing lines, update their schedules and validate the results again. We will extend a metro line and modify a bus line along this metro line. 
+
 ### Edit existing line, to add a few stops
+
+To see all current lines, go to the `Agencies and Lines` panel, from the left menu and expand the lines by clicking the `Lines` text under the agency name.
+
+![Lesson 6: Agencies and lines panel](images/lesson6_agenciesAndLines.png)
+
+Select the metro line that will be edited (here, the Montreal STM's blue line). It will open the line edit panel, with the inbound and outbound paths for this line.
+
+![Lesson 6: Line edit panel](images/lesson6_lineEditPanel.png)
+
+Click on one of the paths to edit. They will both be edited, so any will do for now. The entire path is selected and a bottom panel opens to show the stops of the path. At the top left of the bottom panel is a help button ![path edit help button](images/buttonPathEditHelp.png) that shows information on how to edit a path. Click on it to display the help functions.
+
+![path edit bottom panel](images/lesson6_pathEditBottomPanel.png)
+
+We will extend the lines towards the northeast. Stop nodes will need to be added either at the beginning or at the end of the line, depending on its direction. 
+
+To add nodes at the end, simply click on the nodes, in order. To add the nodes at the beginning, shift-click on the node to add.
+
+Notice that since metro lines are underground, they do not follow the road network and the line will between 2 nodes will be a straight line.
+
+![Lesson 6: straight lines between metro stations](images/lesson6_straightLinesBetweenNodes.png)
+
+Now click on the save button ![save button](images/buttonSave.png) to save this path.
+
+Do the same operation for the reverse path, adding nodes at the end or beginning of the path and saving it. The paths list in the line should now show more stops on both paths.
+
+![Lesson 6: modified path list](images/lesson6_modifiedPathList.png)
 
 ### Update schedules for the edited line
 
+Now that paths have been changed, the schedules should also be updated. To do so, in the `Line edit` panel, click on the `Timetables` button to open the timetable panel on the left.
+
+![Lesson 6: open timetables](images/lesson6_openTimeTables.png)
+
+Select the current service to open the current schedule. This will display all periods for the day. The current schedule comes from the imported GTFS file, so each trip may be at different times. In transit planning, fine-tuning each trip is usually not required, so we will re-create the schedule for each period with a certain interval.
+
+For example, our metro service starts at 5:30 and will be every 15 minutes until 6AM, then it will increase to 7 minutes from 6AM to 9AM, the every 10 minutes, etc. Then click on the `Generate timetable` button to generate the schedule for this period. Verify if the schedules are set to be in seconds or minutes and if need be select whether to allow second-based timetables or keep minute-based.
+
+![Lesson 6: edit timetable](images/lesson6_editTimetable.png)
+
+Once every period has been update, click on the `Save timetable` button ![save button](images/buttonSave.png) to save the current timetable.
+
+Then close the timetable window and save the current line by clicking the line's save ![save button](images/buttonSave.png) button.
+
+### Edit a line to change one end of the path
+
+Similarly to the metro line, we will modify a bus line to completely change one end of its path, to accompany the new metro. In the STM example, we will modify the `141 - Jean-Talon Est`, whose path runs along the metro. We will drop one end and make it serve a nearby hospital from a metro station.
+
+We will edit each path. First to remove the nodes at one end by alt-clicking on the nodes to remove, or by clicking the delete button ![delete button](images/buttonDelete.png) on the bottom panel
+
+![Lesson 6: delete nodes from bottom panel](images/lesson6_deleteFromBottomPanel.png)
+
+Once the nodes have been deleted up to the desired point, new ones can be added, in a similar way than in [the previous metro line edit section](#edit-existing-line-to-add-a-few-stops).
+
+Notice that now, since the line is a bus, it follows the road network.
+
+![Lesson 6: bus line follows road network](images/lesson6_busLineFollowRoadNetwork.png)
+
+Save the path, edit the other direction, then update the schedules as described in the [update schedules section](#update-schedules-for-the-edited-line). 
+
+Before saving the line, we will change its color, so that it is easier to see it in routing panel, as all routes have the same blue color in our network. Save the line.
+
+![Lesson 6: change line color](images/lesson6_changeLineColor.png)
+
 ### Validate results with routing
+
+Now that all edits have been done, the data can be prepared for the calculations. To do so, you must save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the ![save data to routing cache](images/buttonSaveDataToCache.png). This will automatically restart the routing engine.
+
+You can now go to the `Routing` or `Accessibility maps` panels, select the first scenario that was created in [lesson 2](#lesson-2-prepare-imported-data-for-calculations) and calculate paths that should use the edited lines to see if the data has been properly updated. We see that the first route returned uses our extended metro line and the modified bus.
+
+![Lesson 6: Routing with edited lines](images/lesson6_routingWithEditedLines.png)
+
+*Note*: In this lesson, we have modified existing lines and schedules. We have lost their original data. We could have copied each individual line with the duplicate ![duplicate button](images/buttonDuplicate.png) button, which would have created a new service for each copied line. We also should have edited the scenario, to deactivate the previous lines and add the new lines' services. We could also have duplicated the whole agency, with the duplicate ![duplicate button](images/buttonDuplicate.png) button next to the agency, and edit the lines in the copied agency. In this case, we should have created a new scenario with the copied service of the copied agency.
 
 ## Lesson 7: Create new services/agencies/lines and validate results
 
