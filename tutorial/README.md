@@ -110,7 +110,7 @@ When selecting results with alternatives, you can navigate through the alternati
 
 ![Lesson 3: routing results with alternatives](images/lesson3_resultsWithAlternatives.png)
 
-### Troubleshooting
+### Troubleshooting routing
 
 The routing engine returns no result? 
 
@@ -126,6 +126,30 @@ If the message says it returned no result, it will hint to look at some paramete
 If you are certain that there should be a route with the given parameters, go back to [lesson 2](#lesson-2-prepare-imported-data-for-calculations) and validate that the scenario contains the expected lines, then refresh calculation data to make sure it is up to date.
 
 ## Lesson 4: Visualize accessibility maps
+
+Another type of calculation that can be done with the scenario is the accessibility maps. Accessility maps are isochrones displaying the region accessible in transit within a certain amount of time.
+
+Navigate to the `Accessibility map` panel, by clicking on the `Accessibility map` in the left menu.
+
+![Lesson 4: accessibility map menu](images/lesson4_accessibilityMapMenu.png)
+
+Many of the parameters to set are similar to those of the `Routing`. Specifying a departure time means the selected location is an origin, while an arrival time means the location is a destination.
+
+The parameters specific to the accessibility map are the number of polygons and the delta and delta interval. The number of polygons is the number of isochrones that will be drawn. The outermost isochrone is for the maximum travel time specified. And each other isochrone is for a corresponding fraction of the total time. For example, 4 polygons with a 60 minutes total travel time will draw isochrones for 15, 30, 45 and 60 minutes.
+
+As for the delta, it allows to flatten the variabilities at different times by calculating an average of the accessibility a bit before and a bit after the requested time. For example, with the default values of departure time at 8:00 and a delta of 10 minutes and interval of 5 minutes, it will calculate the accessibility at 7:50, 7:55, 8:00, 8:05 and 8:10. A node `n` may be accessible in 15 minutes at 7:50, 10 minutes at 7:55, 20 minutes at 8:00, 15 minutes at 8:05 and 10 minutes at 8:10. The final time for node `n` will be the average of all the times obtained (`(15 + 10 + 20 + 15 + 10) / 5 = 14` minutes), while it would have been 20 minutes if only the 8:00 calculation had been taken into account.
+
+Select the scenario, as for the routing calculation, then click on the ![calculation button](images/buttonSave.png) calculation button and you should see the result of the route display on the map. Results may take a while to calculate. You can decrease the maximum total travel time or the number of polygons to speed things up to quickly see a first result.
+
+![Lesson 4: display accessibility map results](images/lesson4_displayAccessibilityMapsResults.png)
+
+### Troubleshooting accessibility maps
+
+If there is a problem with the scenario or the selected locations, there won't be any error message, but the only isochrone displayed will be a circle of walking distance from the point, as shown in the screenshot below. That means that no transit trip could be done from this location.
+
+![Lesson 4: walking isochrone only](images/lesson4_walkingIsochroneOnly.png)
+
+It may mean that the point is outside the network zone or the time outside the service hours. Or there may be problem with the network. Make sure that `Routing` works as expected from/to this location. See [the `Routing` troubleshooting section](#troubleshooting-routing) for information to troubleshoot transit errors in calculations.
 
 ## Lesson 5: Edit scenarios, to remove modes or lines
 
