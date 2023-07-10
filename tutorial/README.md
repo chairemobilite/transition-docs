@@ -88,6 +88,43 @@ The data is now ready for calculation!
 
 ## Lesson 3: Test the imported data by calcuting routes
 
+When changes are done on a scenario, before doing lengthy calculations on it, it is important to test that it works as expected and give logical results. This can be done by testing some trip calculations on the transit network.
+
+Navigate to the `Routing` panel, by clicking on the `Routing` in the left menu.
+
+![Lesson 3: routing menu](images/lesson3_routingMenu.png)
+
+You can fine-tune the parameters, to change the departure/arrival time, maximum travel time, minimum waiting time, maximum access, egress and transfer time.
+
+Then select the scenario to test and whether you want alternatives or not.
+
+To define the origin and destination, you may simply click on the map. The first click will define the origin, all further clicks will change the destination.
+
+To change the origin again, right-click on the map. A popup menu will open and allow to select the origin or destination for the current point localtion.
+
+Finally, click on the ![calculation button](images/buttonSave.png) calculation button and you should see the result of the route display on the map.
+
+![Lesson 3: display routing results](images/lesson3_displayRoutingResults.png)
+
+When selecting results with alternatives, you can navigate through the alternatives to see the detailed results for each.
+
+![Lesson 3: routing results with alternatives](images/lesson3_resultsWithAlternatives.png)
+
+### Troubleshooting
+
+The routing engine returns no result? 
+
+If there is no access, either at origin or destination (no stop nodes near those points), or if there is no service at origin or destination, the error message will be explicit enough. You can change the origin or destination for locations where there is service available.
+
+![Lesson 3: routing results error no access](images/lesson3_resultsErrorNoAccess.png)
+![Lesson 3: routing results error no service](images/lesson3_resultsErrorNoService.png)
+
+If the message says it returned no result, it will hint to look at some parameters values. You can try changing the travel time, access/egress, etc.
+
+![Lesson 3: routing results error no routing](images/lesson3_resultsErrorNoRouting.png)
+
+If you are certain that there should be a route with the given parameters, go back to [lesson 2](#lesson-2-prepare-imported-data-for-calculations) and validate that the scenario contains the expected lines, then refresh calculation data to make sure it is up to date.
+
 ## Lesson 4: Visualize accessibility maps
 
 ## Lesson 5: Edit scenarios, to remove modes or lines
