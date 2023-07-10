@@ -151,7 +151,39 @@ If there is a problem with the scenario or the selected locations, there won't b
 
 It may mean that the point is outside the network zone or the time outside the service hours. Or there may be problem with the network. Make sure that `Routing` works as expected from/to this location. See [the `Routing` troubleshooting section](#troubleshooting-routing) for information to troubleshoot transit errors in calculations.
 
+So far, we have learned how to create a scenario from a service or set of services and how to test this scenario by making single calculations on it to make sure it corresponds to what is expected. We will now learn to modify the scenarios or network and validate the results.
+
 ## Lesson 5: Edit scenarios, to remove modes or lines
+
+We will learn to fine-tune a scenario, to remove certain modes or lines from the calculations.
+
+Go back to the `Scenario` panel (![Scenario panel icon](images/buttonScenarioPanel.png)).
+
+We will duplicate the scenario that we created earlier, by clicking on the duplicate button ![Scenario duplicate button](images/buttonDuplicate.png) next to the scenario. This will create a scenario of the same name, with the `(copy)` suffix.
+
+![Lesson 5: duplicate scenario](images/lesson5_scenarioDuplicateButton.png)
+
+Click on this scenario to edit it. Rename it to something more explicit, for example `Test STM without metro`.
+
+To exclude the metro, select the `Metro/Subway/Aerial metro` in the `Excluded modes` fields. You may also remove a few lines in the `Excluded lines` field.
+
+![Lesson 5: edit scenario remove modes and lines](images/lesson5_removeModesAndLinesFromScenario.png)
+
+Then click on the ![save button](images/buttonSave.png) save button to save this scenario.
+
+Finally, for the new scenario to be considered, you must save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the ![save data to routing cache](images/buttonSaveDataToCache.png). This will automatically restart the routing engine.
+
+### Validate results with routing
+
+The scenario is now ready for calculation. You can now go back to the `Routing` and `Accessibility maps` panels, select the new scenario and make sure the metro modes and excluded bus lines are not part of the transit trips anymore.
+
+![Lesson 5: Routing with the scenario without metro](images/lesson5_routingWithoutMetro.png)
+
+Notice that without the metro, for a very similar trip than the one calculated in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes), there are now 44 alternatives instead of just 3. But the first alternatives in this scenario takes *66 minutes* instead of just around 30 minutes in the original scenario. Alternatives are considered valid if they are within a factor (1.75) of the first alternative returned. So this 66 minutes trip would not have been considered as an alternative to a 30 minutes trip, it is way too long!
+
+![Lesson 5: Compare travel time of first alternatives](images/lesson5_compareTravelTimeOfAlternatives.png)
+
+As we see, the number of alternatives alone should not be considered as a metric to validate the quality of service of a network, as it depends on the best alternative, which, in the case of a metro line available, is much better than any other alternative!
 
 ## Lesson 6: Edit existing lines
 
