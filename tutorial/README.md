@@ -391,4 +391,22 @@ In this lesson, we have learned how to manually create a new agency with new lin
 
 ## Lesson 8: Export transit data as GTFS
 
+Transition is a tool used for transit planning. We can edit transit offers and services, play with scenarios to compare trip times and accessibility. But once changes are done and we are satisfied with the data, it may be useful to export the data, to import it in other tools, like transit operation management tools.
+
+GTFS can be used as an interchange format. To export as GTFS, go to the `Export as a GTFS feed` panel, from the left menu.
+
+![Lesson 8: export GTFS panel](images/lesson8_exportGTFSPanel.png)
+
+Give the file a name, then select the new agency from the list.
+
+Finally, click on the `prepare GTFS feed` button, to prepare the GTFS file.
+
+![Lesson 8: prepare GTFS for export](images/lesson8_prepareGtfsForExport.png)
+
+Once the GTFS file is ready, the `Download GTFS feed` button will appear in the panel. Click to download the GTFS zip file.
+
+![Lesson 8: download GTFS](images/lesson8_downloadGtfs.png)
+
+The new agency and services can now be imported in any tools supporting the Gtfs format.
+
 ## Lesson 9: Batch calculations
