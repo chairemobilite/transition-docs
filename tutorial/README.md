@@ -265,21 +265,129 @@ You can now go to the `Routing` or `Accessibility maps` panels, select the first
 
 ## Lesson 7: Create new services/agencies/lines and validate results
 
+In this lesson, we will simulate a new transit agency deciding to build and operate a new metro line in the city. This new line will do a diagonal from downtown to the suburbs in the north east of the city, crossing a few existing metro stations.
+
 ### Create new service
+
+The first step will be to create a new service, under which this line will run. Go to the `Service` panel, from the left menu
+
+![Lesson 7: service panel](images/lesson7_servicePanel.png)
+
+Click on the `New service` button. Give it a name. For sake of simplicity, we'll make it the same for all days of the week, with a validity period of one year.
+
+![Lesson 7: new service](images/lesson7_newService.png)
+
+Save the service by clicking the save ![save button](images/buttonSave.png) button.
 
 ### Create new nodes
 
-### Create new agency
+Before creating the new line, we need to make sure that all stop nodes exist, where we want to build stations. To add new nodes, go to the `Stop nodes` panel, from the left menu.
 
-### Create new line
+![Lesson 7: nodes panel](images/lesson7_nodesPanel.png)
+
+Nodes in the city itself are numerous enough, we will add a few new nodes in the suburb. To add a new node, simply click on the map at the desired location. This will draw the node and open the node edit window.
+
+You can give it a name and a code. If codes of existing nodes are sequential, writing a digit should give a few auto-complete suggestions for the next code.
+
+The radius used for routing means that the actual transit stop should be within this radius from the node. For example, a transit node can be between 2 one way streets, one for each direction. Make sure the radius is sufficient to cover the streets by which vehicles could pass. This radius is represented on the map by the blue circle around the node.
+
+![Lesson 7: new node panel](images/lesson7_newNodePanel.png)
+
+Add as many nodes as may be required for your new line.
+
+Once all nodes have been added/updated, the transferrable nodes should be recalculated by clicking on the `update transferrable nodes` ![update transferrable nodes](images/buttonUpdateTransferrableNodes.png) button (step 1 of the [refresh calculation data section](#refresh-calculation-data)).
+
+### Create a new agency
+
+The new line will be under a new agency. To create the new agency, go to the `Agencies and lines` panel ![agencies and lines panel](images/buttonAgencyLinePanel.png).
+
+Click on the `New agency` button and fill the new agency's data. Click on the save ![save button](images/buttonSave.png) button to save the new agency.
+
+![Lesson 7: new Agency](images/lesson7_newAgencyEdit.png)
+
+You will go back to the agencies list. The new agency should be listed there.
+
+![Lesson 7: agency list with new agency](images/lesson7_agencyListWithNewAgency.png)
+
+### Create a new line
+
+To create a new line, expand the agency's lines by clicking on the `Lines` text under the agency and click on the `New line` button. You can also click on the `New line` button at the bottom of the panel, but you'll have to select the agency manually in the new line.
+
+![Lesson 7: new line button](images/lesson7_newLineButton.png)
+
+Fill the line's basic data: number, name, mode, right-of-way, color. The mode is important as it will determine the default routing method when building the path. For example, a bus line will use the road network, with extra bus specific information like reserved lanes, while a metro will use manual (hand-drawn) routing.
+
+For this tutorial, we will create a metro line that will cross the river.
+
+![Lesson 7: new line](images/lesson7_newLineEdit.png)
+
+Click on the save ![save button](images/buttonSave.png) button to save the lines data and see the paths list appear.
 
 ### Create paths for the line
 
+Create a first path by clicking on the `New path` button that appeared under the line data
+
+![Lesson 7: new path button](images/lesson7_newPathButton.png)
+
+This will open the new path form, with valid default values for speeds and acceleration/deceleration according to the selected mode. The buttom panel will display the nodes that are part of this path as they are selected.
+
+To build the path, add nodes by clicking on them on the map. For metro lines, the path will be straight lines between the nodes. For smoother transitions, or to allow curves in the line, simply click on the map, but not on a node, to add a waypoint, ie a point by which the path will pass but that is not a stop. Waypoints can be dragged and dropped to change the path's trajectory.
+
+Notice that the path edit panel contains statistics for the line, calculated from the specified speeds and considering acceleration/deceleration and dwell times at each station. For manual modes, who do not use road network data for speeds and turns, etc, it is important to validate these parameters with the actual data for the vehicles. Get the technical specifications of the modes that will run, from the manufacturer, to make sure that the simulation will be accurate.
+
+![Lesson 7: path create](images/lesson7_pathCreation.png)
+
+Once you are satisfied with the path, click on the save ![save button](images/buttonSave.png) button to go back to the paths list.
+
+To create the reverse path, simply click on the `Generate reversed path` ![generate reversed path button](images/buttonGenerateReversedPath.png) button next to the path we just created.
+
+![Lesson 7: create reversed path](images/lesson7_createReversedPath.png)
+
+It will automatically create a new path, with nodes in the reversed order. You can edit it, to update its name and make sure everything is as expected.
+
 ### Create schedule for the new line
+
+Now that the line and paths have been created, the schedules can be defined. Click on the `Timetables` button to open the `Schedules` panel.
+
+Click the `New timetable` button. Select the service that was created at the beginning of this lesson, and pick an appropriate period group. It can be `Complete day`, for schedules at the same interval all day, or `Default` to split the day in 5 periods, with peak hours, to fine-tune the schedule.
+
+The periods will show up at the buttom of the panel. Since we have only 2 paths, the oubound and inbound paths are automatically selected.
+
+![Lesson 7: new schedules for line](images/lesson7_newSchedulesForLine.png)
+
+Trips can be scheduled either according to the number of vehicles or a time interval between trips. When entering either value, the `Generate timetable` button will appear to generate a schedule according to the parameter.
+
+The start time of trips will be displayed at the bottom of the panel.
+
+![Lesson 7: generated timetables](images/lesson7_generatedTimetables.png)
+
+Once all timetables are ready, click on the `Save timetable` button, then `Close the timetable window`. 
+
+![Lesson 7: save timetables](images/lesson7_saveTimetables.png)
+
+And finally, save the line itself by cliking the line's save ![save button](images/buttonSave.png) button to go back to the agency list.
 
 ### Create a new scenario to include this new line
 
+The last step to prepare the data to test this new path is to create a new scenario that includes this line.
+
+Go to the scenario panel by clicking on the scenario ![scenario button](images/buttonScenarioPanel.png) icon from the left menu.
+
+Create a new scenario and select the 2 available services.
+
+![Lesson 7: create new scenario](images/lesson7_newScenario.png)
+
+Save ![save button](images/buttonSave.png) the scenario.
+
 ### Validate results with routing
+
+Now that all the new transit data has been created, you can  save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the `save data to routing cache` ![save data to routing cache](images/buttonSaveDataToCache.png) button. This will automatically restart the routing engine.
+
+You can now go to the `Routing` or `Accessibility maps` panels, select the new scenario and calculate trips along the new metro line to see that it really takes the new line. You can then compare the results with the results from the previous scenario and see that there is a difference.
+
+![Lesson 7: Routing with new lines](images/lesson7_routingWithNewLines.png)
+
+In this lesson, we have learned how to manually create a new agency with new lines, paths and schedules. Importing GTFS makes it easy to import existing data, with services and schedules, but designing new lines is an important part of transit planning and it allows to compare various scenarios, with various possibilities of new transit offers. In this tutorial, we quickly added a metro line, but these steps should not be taken lightly, care should be taken to properly parameterize the new modes and options.
 
 ## Lesson 8: Export transit data as GTFS
 
