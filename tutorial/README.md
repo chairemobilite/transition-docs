@@ -410,3 +410,69 @@ Once the GTFS file is ready, the `Download GTFS feed` button will appear in the 
 The new agency and services can now be imported in any tools supporting the Gtfs format.
 
 ## Lesson 9: Batch calculations
+
+So far, we have learned how to import data, edit a transit network, test scenarios with individual trips or accessibility map calculations. But the strenght of tools like Transition is to be able to do calculations on a whole dataset, to compare scenarios between them. For example, with actual demand data, or origin/destination datasets, we can calculate the time it takes for the trip for transit, driving, cycling and walking.
+
+For the sake of this tutorial, let's assume, we do not have any demand data and create a few trips that we'll use for batch calculation. Go to the `Routing` panels from the left menu. Once the origin and destination are selected, click on the `Save this route` button. You can give the route an optional name, in the `Route name` field, to more easily identify the significance of those coordinates. Select a few more pairs of origin and destination and each time, click on the `Save this route` button. 
+
+![Lesson 9: save route in routing panel](images/lesson9_saveRouteInRoutingPanel.png)
+
+This will increment the routes counter in the `Saved routes (CSV)` button. Once there is a few routes selected, click on the button to download the csv file.
+
+![Lesson 9: download saved routes](images/lesson9_downloadSavedRoutes.png)
+
+This will be the demand file that we will use in the batch calculation. You can visualize and edit it. It contains the minimal fields required to make a batch calculation.
+
+![Lesson 9: demand csv file](images/lesson9_demandCsvFile.png)
+
+Now, to start a batch calculation job, go to the `Batch calculation` panel from the left menu, and click on the `New calculation` button.
+
+![Lesson 9: batch calculation panel](images/lesson9_batchCalculationPanel.png)
+
+Select the csv file that you just downloaded. It will then ask for the fields in the csv to use for the origin and destination coordinates, as well as the departure or arrival time and time format.
+
+![Lesson9: batch calculation configure demand](images/lesson9_configureDemand.png)
+
+Click on the upload file to upload the current file to server, then on the next button to continue to further parameterize the calculation. The next window is for the calculation parameters and is very similar to the single route parameters, seen in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes). Let's select a specific scenario to test it on. The yes/no choices under the scenario selection field are the following:
+
+* Calculate with alternatives: If set to `yes`, there will be one alternative per line in the main result `csv` file.
+* Detailed result with steps: If set to `yes`, an additional `csv` result file will be produced where each alternative will be detailed, one line per step of the route for each alternative.
+* Include route geometries (geojson): If set to `yes`, a `geojson` file will be produced, with the geometries for each alternative.
+
+![Lesson9: batch calculation configure analysis](images/lesson9_configureAnalysis.png)
+
+When the parameters have all been set, click on the `Next` button and continue to the confirmation screen.
+
+This page summarizes the calculation parameters. You can go back to edit the simulation, or click on the `Calculate` button to start the calculation.
+
+![Lesson 9: batch calculation confirmation page](images/lesson9_confirmCalculation.png)
+
+The calculation will be added to the calculation list, it may take a while to finish, depending on the network, the parameters, and the number of entries. This task runs in the background, so it is possible to come back many hours later to see the status and get the results.
+
+![Lesson 9: batch calculation list](images/lesson9_calculationList.png)
+
+Expand the `Display files` column to see the results of the calculation.
+
+![Lesson 9: batch calculation display files](images/lesson9_expandDisplayFiles.png)
+
+Now, to test another scenario, you may either create a new calculation from scratch by clicking the `New calculation` button again, or click on the `Create new calculation from this one` button, next to the last calculation
+
+![Lesson 9: batch calculation create new from calculation](images/lesson9_createNewFromCalculation.png)
+
+If doing so, the demand and analysis data will be pre-filled with the previous calculation's parameters. It will use the same input file. Click next to use the same demand data, then change the scenario and click `Next` to confirm the new calculation. Start the calculation by clicking the `Calculate` button.
+
+You can now download the result files for each calculation, import it in various statistical analysis tools, compare the results, etc.
+
+Here's an example textual output of the main results `csv` file.
+
+```{csv}
+uuid,internalId,originLat,originLon,destinationLat,destinationLon,alternativeSequence,alternativeTotalSequence,status,departureTime,departureTimeSeconds,arrivalTime,arrivalTimeSeconds,initialDepartureTime,initialDepartureTimeSeconds,initialLostTimeAtDepartureMinutes,initialLostTimeAtDepartureSeconds,totalTravelTimeMinutes,totalTravelTimeSeconds,totalDistanceMeters,totalInVehicleTimeMinutes,totalInVehicleTimeSeconds,totalInVehicleDistanceMeters,totalNonTransitTravelTimeMinutes,totalNonTransitTravelTimeSeconds,totalNonTransitDistanceMeters,numberOfBoardings,numberOfTransfers,transferWalkingTimeMinutes,transferWalkingTimeSeconds,transferWalkingDistanceMeters,accessTravelTimeMinutes,accessTravelTimeSeconds,accessDistanceMeters,egressTravelTimeMinutes,egressTravelTimeSeconds,egressDistanceMeters,transferWaitingTimeMinutes,transferWaitingTimeSeconds,firstWaitingTimeMinutes,firstWaitingTimeSeconds,totalWaitingTimeMinutes,totalWaitingTimeSeconds,lineUuids,modes,stepsSummary,onlyDrivingTravelTimeSeconds,onlyDrivingDistanceMeters,onlyWalkingTravelTimeSeconds,onlyWalkingDistanceMeters
+660ad493-23c8-4a11-a7dd-d9e8d3b1b387,0,45.636832777277334,-73.59880342333042,45.53512017377716,-73.5761828204394,1,32,success,8:08,29280,9:25,33926,8:00,28800,8,480,77,4646,16996,43,2576,15398,20,1196,1598,3,2,2,95,130,5,323,428,13,778,1039,12,694,3,180,15,874,f77d35fd-41df-4abd-8505-cf663311885e|fabca2ad-27bc-48d1-a355-e8fda8f94329|13f61b10-6ed6-4316-a7cd-42df6d178b65,bus|metro|bus,access323s428m|wait180s|ride1458s6523m|transfer0s0m|wait380s|ride490s5763m|transfer95s131m|wait314s|ride628s3112m|egress778s1039m,1754.4,17056.7,11639.1,15853.8
+660ad493-23c8-4a11-a7dd-d9e8d3b1b387,0,45.636832777277334,-73.59880342333042,45.53512017377716,-73.5761828204394,2,32,success,8:08,29280,9:27,34057,8:00,28800,8,480,80,4777,16640,44,2668,15332,17,993,1308,3,2,6,333,461,5,323,428,6,337,418,16,936,3,180,19,1116,f77d35fd-41df-4abd-8505-cf663311885e|fabca2ad-27bc-48d1-a355-e8fda8f94329|0b3458ad-8972-41f4-961f-2fa476d528f3,bus|metro|bus,access323s428m|wait180s|ride1458s6523m|transfer0s0m|wait380s|ride490s5763m|transfer333s462m|wait556s|ride720s3046m|egress337s418m,1754.4,17056.7,11639.1,15853.8
+```
+
+With this data, it is possible to use tools like spreadsheets, R studio or python scripts to process the data, compare results and draw graphs of various kinds.
+
+Now we have manually defined our test data, but any dataset that contains origin and destination coordinates and trip times can be used for the calculations. The demand configuration supports many formats of geographical coordinates or time of trips.
+
+This concludes the Transition tutorial. We have experimented many of the available features. You may now continue your exploration of the tool. For any questions or issue, use the [Transition projects github repository](https://github.com/chairemobilite/transition).
