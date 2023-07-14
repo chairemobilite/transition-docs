@@ -4,6 +4,18 @@ This tutorial will guide you through the first steps of using [Transition](http:
 
 It supposes you have access to an instance of Transition, with access to a routing server (osrm) that includes the region that you want to analyze. See the [project's development page](http://github.com/chairemobilite/transition) for instructions to install Transition.
 
+## Outline
+
+* [Lesson 1: Import existing data from GTFS](#lesson-1-import-existing-data-from-gtfs)
+* [Lesson 2: Prepare imported data for calculations](#lesson-2-prepare-imported-data-for-calculations)
+* [Lesson 3: Test the imported data by calculating routes](#lesson-3-test-the-imported-data-by-calcuting-routes)
+* [Lesson 4: Visualize accessibility maps](#lesson-4-visualize-accessibility-maps)
+* [Lesson 5: Edit scenarios to remove modes or lines](#lesson-5-edit-scenarios-to-remove-modes-or-lines)
+* [Lesson 6: Edit existing lines](#lesson-6-edit-existing-lines)
+* [Lesson 7: Create new services/agencies/lines and validate results](#lesson-7-create-new-servicesagencieslines-and-validate-results)
+* [Lesson 8: Export transit data as GTFS](#lesson-8-export-transit-data-as-gtfs)
+* [Lesson 9: Batch calculations](#lesson-9-batch-calculations)
+
 ## Lesson 1: Import existing data from GTFS
 
 [GTFS](https://gtfs.org/) is a open standard format used to distribution transit information. Most agencies in the world use this format, that can be used by various tools to show transit data to users.
