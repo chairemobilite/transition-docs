@@ -18,7 +18,7 @@ It supposes you have access to an instance of Transition, with access to a routi
 
 ## Lesson 1: Import existing data from GTFS
 
-[GTFS](https://gtfs.org/) is a open standard format used to distribution transit information. Most agencies in the world use this format, that can be used by various tools to show transit data to users.
+[GTFS](https://gtfs.org/) is an open standard format used to distribute transit information. Most agencies in the world use this format, that can be used by various tools to show transit data to users.
 
 Many transit feeds can be easily found in the [Open Mobility data](https://transitfeeds.com/) website, but the most up to date versions are recorded in the [Mobility Database catalogs](https://database.mobilitydata.org/). The transit agencies website may also contain this information. For example, the Montreal Transportation Society, whose data has been used to write this tutorial, can be found on [their website](https://www.stm.info/en/about/developers).
 
@@ -26,7 +26,7 @@ To import the GTFS, click on the `Import from a GTFS feed` menu item on the left
 
 ![Import GTFS Menu](images/gtfsImportMenu.png)
 
-Select the GTFS zip file that contain the data to import
+Select the GTFS zip file that contain the data to import.
 
 Click on the upload file button ![Upload GTFS file button](images/gtfsUploadFileButton.png)
 
@@ -34,7 +34,7 @@ It will then display the agencies and services available on the GTFS. Selecting 
 
 ![Import GTFS: Select agencies and lines](images/gtfsSelectAgenciesAndLines.png)
 
-Select the services to import. Service names are not always obvious, some agencies have a lot of services. They can either all be select, or filtered to include only the services for weekdays at a given date.
+Select the services to import. Service names are not always obvious, some agencies have a lot of services. They can either all be selected, or filtered to include only the services for weekdays at a given date.
 
 ![Import GTFS: Filter services](images/gtfsFilterServices.png)
 
@@ -48,7 +48,7 @@ Finally, click the `Import data`. This will upload the transit data into Transit
 
 If there are errors, the import tab will remain open and display the errors and warnings. They may not all result in bad routing, but may prevent correct display of involved lines. Those lines may need to be investigated with care.
 
-*If you know that the GTFS is valid, don't hesitate to open a new issue on [the Transition github](https://github.com/chairemobilite/transition), with a description, the error message and a link the GTFS file used.*
+*If you know that the GTFS is valid, don't hesitate to open a new issue on [the Transition github](https://github.com/chairemobilite/transition), with a description, the error message and a link to the GTFS file used.*
 
 But at this point, there should be data available in Transition!
 
@@ -64,7 +64,7 @@ But it is not yet ready to be used in calculations. The following steps will pre
 
 ### Create scenario
 
-A scenario in Transition represents a transit network, a state of the transit offer, for a certain date. It can group many services, from many agencies. It can also include only or exclude some data (lines, modes, etc). All calculations (routing, accessibility maps, etc) are made against a scenario.
+A scenario in Transition represents a transit network, a state of the transit offer, for a certain date. It can group many services, from many agencies. It can also include or exclude some data (lines, modes, etc). All calculations (routing, accessibility maps, etc) are made against a scenario.
 
 To create a new scenario, click on the `Scenarios` menu item on the left. It will open the `Scenarios` panel.
 
@@ -86,13 +86,13 @@ Click on the save button ![save button](images/buttonSave.png) to save the scena
 
 Some data needs to be pre-calculated, to avoid lengthy calculations. When the transit data has been edited and is ready for calculation, do the following steps:
 
-1. Refresh the transferrable nodes: The walking distance from each nodes to all other nodes is calculated (up to a max of 20 minutes). This is used to determine possible transfer times and distances during a trip.
+1. Refresh the transferable nodes: The walking distance from each nodes to all other nodes is calculated (up to a max of 20 minutes). This is used to determine possible transfer times and distances during a trip.
 
 2. Save data to cache for the routing engine: Transition uses [trRouting](https://github.com/chairemobilite/trRouting) as the routing engine. `trRouting` reads its data from a cache that needs to be manually updated when there are changes to the transit data in Transition.
 
 3. Start the routing engine: By default, when the instance starts, the routing engine is not running. It needs to be manually started. 
 
-Usually, the icons will be yellow when there are un-processed data and will turn white once it the action has been executed. The following screenshot shows the buttons for each step. *These manual steps are error prone and we are working to make them automatic.*
+Usually, the icons will be yellow when there are unprocessed data and will turn white once the action has been executed. The following screenshot shows the buttons for each step. *These manual steps are error prone and we are working to make them automatic.*
 
 ![Lesson 2: refresh calculation data](images/lesson2_refreshCalculationData.png)
 
@@ -100,15 +100,15 @@ The data is now ready for calculation!
 
 ## Lesson 3: Test the imported data by calcuting routes
 
-When changes are done on a scenario, before doing lengthy calculations on it, it is important to test that it works as expected and give logical results. This can be done by testing some trip calculations on the transit network.
+When changes are done on a scenario, before doing lengthy calculations on it, it is important to test that it works as expected and gives logical results. This can be done by testing some trip calculations on the transit network.
 
-Navigate to the `Routing` panel, by clicking on the `Routing` in the left menu.
+Navigate to the `Routing` panel, by clicking on the `Routing` item in the left menu.
 
 ![Lesson 3: routing menu](images/lesson3_routingMenu.png)
 
-You can fine-tune the parameters, to change the departure/arrival time, maximum travel time, minimum waiting time, maximum access, egress and transfer time.
+You can fine-tune the parameters to change the departure/arrival time, maximum travel time, minimum waiting time, maximum access, egress and transfer time.
 
-Then select the scenario to test and whether you want alternatives or not.
+Then, select the scenario to test and whether you want alternatives or not.
 
 To define the origin and destination, you may simply click on the map. The first click will define the origin, all further clicks will change the destination.
 
@@ -139,15 +139,15 @@ If you are certain that there should be a route with the given parameters, go ba
 
 ## Lesson 4: Visualize accessibility maps
 
-Another type of calculation that can be done with the scenario is the accessibility maps. Accessility maps are isochrones displaying the region accessible in transit within a certain amount of time.
+Another type of calculation that can be done with the scenario is the accessibility map. Accessility maps are isochrones displaying the region accessible in transit within a certain amount of time.
 
-Navigate to the `Accessibility map` panel, by clicking on the `Accessibility map` in the left menu.
+Navigate to the `Accessibility map` panel, by clicking on the `Accessibility map` item in the left menu.
 
 ![Lesson 4: accessibility map menu](images/lesson4_accessibilityMapMenu.png)
 
 Many of the parameters to set are similar to those of the `Routing`. Specifying a departure time means the selected location is an origin, while an arrival time means the location is a destination.
 
-The parameters specific to the accessibility map are the number of polygons and the delta and delta interval. The number of polygons is the number of isochrones that will be drawn. The outermost isochrone is for the maximum travel time specified. And each other isochrone is for a corresponding fraction of the total time. For example, 4 polygons with a 60 minutes total travel time will draw isochrones for 15, 30, 45 and 60 minutes.
+The parameters specific to the accessibility map are the number of polygons and the delta and delta interval. The number of polygons is the number of isochrones that will be drawn. The outermost isochrone is for the maximum travel time specified. Each other isochrone is for a corresponding fraction of the total time. For example, 4 polygons with a 60 minutes total travel time will draw isochrones for 15, 30, 45 and 60 minutes.
 
 As for the delta, it allows to flatten the variabilities at different times by calculating an average of the accessibility a bit before and a bit after the requested time. For example, with the default values of departure time at 8:00 and a delta of 10 minutes and interval of 5 minutes, it will calculate the accessibility at 7:50, 7:55, 8:00, 8:05 and 8:10. A node `n` may be accessible in 15 minutes at 7:50, 10 minutes at 7:55, 20 minutes at 8:00, 15 minutes at 8:05 and 10 minutes at 8:10. The final time for node `n` will be the average of all the times obtained (`(15 + 10 + 20 + 15 + 10) / 5 = 14` minutes), while it would have been 20 minutes if only the 8:00 calculation had been taken into account.
 
@@ -161,7 +161,7 @@ If there is a problem with the scenario or the selected locations, there won't b
 
 ![Lesson 4: walking isochrone only](images/lesson4_walkingIsochroneOnly.png)
 
-It may mean that the point is outside the network zone or the time outside the service hours. Or there may be problem with the network. Make sure that `Routing` works as expected from/to this location. See [the `Routing` troubleshooting section](#troubleshooting-routing) for information to troubleshoot transit errors in calculations.
+It may mean that the point is outside the network zone or the time outside the service hours, or that there may be a problem with the network. Make sure that `Routing` works as expected from/to this location. See [the `Routing` troubleshooting section](#troubleshooting-routing) for information to troubleshoot transit errors in calculations.
 
 So far, we have learned how to create a scenario from a service or set of services and how to test this scenario by making single calculations on it to make sure it corresponds to what is expected. We will now learn to modify the scenarios or network and validate the results.
 
@@ -187,11 +187,11 @@ Finally, for the new scenario to be considered, you must save the data to cache 
 
 ### Validate results with routing
 
-The scenario is now ready for calculation. You can now go back to the `Routing` and `Accessibility maps` panels, select the new scenario and make sure the metro modes and excluded bus lines are not part of the transit trips anymore.
+The scenario is now ready for calculation. You can now go back to the `Routing` and `Accessibility map` panels, select the new scenario and make sure the metro modes and excluded bus lines are not part of the transit trips anymore.
 
 ![Lesson 5: Routing with the scenario without metro](images/lesson5_routingWithoutMetro.png)
 
-Notice that without the metro, for a very similar trip than the one calculated in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes), there are now 44 alternatives instead of just 3. But the first alternatives in this scenario takes *66 minutes* instead of just around 30 minutes in the original scenario. Alternatives are considered valid if they are within a factor (1.75) of the first alternative returned. So this 66 minutes trip would not have been considered as an alternative to a 30 minutes trip, it is way too long!
+Notice that without the metro, for a very similar trip to the one calculated in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes), there are now 44 alternatives instead of just 3. But the first alternative in this scenario takes *66 minutes* instead of just around 30 minutes in the original scenario. Alternatives are considered valid if they are within a factor (1.75) of the first alternative returned. So this 66 minutes trip would not have been considered as an alternative to a 30 minutes trip, it is way too long!
 
 ![Lesson 5: Compare travel time of first alternatives](images/lesson5_compareTravelTimeOfAlternatives.png)
 
@@ -237,19 +237,19 @@ Now that paths have been changed, the schedules should also be updated. To do so
 
 Select the current service to open the current schedule. This will display all periods for the day. The current schedule comes from the imported GTFS file, so each trip may be at different times. In transit planning, fine-tuning each trip is usually not required, so we will re-create the schedule for each period with a certain interval.
 
-For example, our metro service starts at 5:30 and will be every 15 minutes until 6AM, then it will increase to 7 minutes from 6AM to 9AM, the every 10 minutes, etc. Then click on the `Generate timetable` button to generate the schedule for this period. Verify if the schedules are set to be in seconds or minutes and if need be select whether to allow second-based timetables or keep minute-based.
+For example, our metro service starts at 5:30 and will be every 15 minutes until 6AM, then it will increase to 7 minutes from 6AM to 9AM, the every 10 minutes, etc. Then click on the `Generate timetable` button to generate the schedule for this period. Verify if the schedules are set to be in seconds or minutes and if need be, select whether to allow second-based timetables or keep minute-based.
 
 ![Lesson 6: edit timetable](images/lesson6_editTimetable.png)
 
-Once every period has been update, click on the `Save timetable` button ![save button](images/buttonSave.png) to save the current timetable.
+Once every period has been updated, click on the `Save timetable` button ![save button](images/buttonSave.png) to save the current timetable.
 
-Then close the timetable window and save the current line by clicking the line's save ![save button](images/buttonSave.png) button.
+Then, close the timetable window and save the current line by clicking the line's save ![save button](images/buttonSave.png) button.
 
 ### Edit a line to change one end of the path
 
 Similarly to the metro line, we will modify a bus line to completely change one end of its path, to accompany the new metro. In the STM example, we will modify the `141 - Jean-Talon Est`, whose path runs along the metro. We will drop one end and make it serve a nearby hospital from a metro station.
 
-We will edit each path. First to remove the nodes at one end by alt-clicking on the nodes to remove, or by clicking the delete button ![delete button](images/buttonDelete.png) on the bottom panel
+We will edit each path. First, remove the nodes at one end by alt-clicking on the nodes to remove, or by clicking the delete button ![delete button](images/buttonDelete.png) on the bottom panel.
 
 ![Lesson 6: delete nodes from bottom panel](images/lesson6_deleteFromBottomPanel.png)
 
@@ -261,7 +261,7 @@ Notice that now, since the line is a bus, it follows the road network.
 
 Save the path, edit the other direction, then update the schedules as described in the [update schedules section](#update-schedules-for-the-edited-line). 
 
-Before saving the line, we will change its color, so that it is easier to see it in routing panel, as all routes have the same blue color in our network. Save the line.
+Before saving the line, we will change its color, so that it is easier to see it in the routing panel, as all routes have the same blue color in our network. Save the line.
 
 ![Lesson 6: change line color](images/lesson6_changeLineColor.png)
 
@@ -269,7 +269,7 @@ Before saving the line, we will change its color, so that it is easier to see it
 
 Now that all edits have been done, the data can be prepared for the calculations. To do so, you must save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the ![save data to routing cache](images/buttonSaveDataToCache.png). This will automatically restart the routing engine.
 
-You can now go to the `Routing` or `Accessibility maps` panels, select the first scenario that was created in [lesson 2](#lesson-2-prepare-imported-data-for-calculations) and calculate paths that should use the edited lines to see if the data has been properly updated. We see that the first route returned uses our extended metro line and the modified bus.
+You can now go to the `Routing` or `Accessibility map` panels, select the first scenario that was created in [lesson 2](#lesson-2-prepare-imported-data-for-calculations) and calculate paths that should use the edited lines to see if the data has been properly updated. We see that the first route returned uses our extended metro line and the modified bus.
 
 ![Lesson 6: Routing with edited lines](images/lesson6_routingWithEditedLines.png)
 
@@ -277,11 +277,11 @@ You can now go to the `Routing` or `Accessibility maps` panels, select the first
 
 ## Lesson 7: Create new services/agencies/lines and validate results
 
-In this lesson, we will simulate a new transit agency deciding to build and operate a new metro line in the city. This new line will do a diagonal from downtown to the suburbs in the north east of the city, crossing a few existing metro stations.
+In this lesson, we will simulate a new transit agency deciding to build and operate a new metro line in the city. This new line will do a diagonal from downtown to the suburbs in the northeast of the city, crossing a few existing metro stations.
 
 ### Create new service
 
-The first step will be to create a new service, under which this line will run. Go to the `Service` panel, from the left menu
+The first step will be to create a new service, under which this line will run. Go to the `Service` panel, from the left menu.
 
 ![Lesson 7: service panel](images/lesson7_servicePanel.png)
 
@@ -307,7 +307,7 @@ The radius used for routing means that the actual transit stop should be within 
 
 Add as many nodes as may be required for your new line.
 
-Once all nodes have been added/updated, the transferrable nodes should be recalculated by clicking on the `update transferrable nodes` ![update transferrable nodes](images/buttonUpdateTransferrableNodes.png) button (step 1 of the [refresh calculation data section](#refresh-calculation-data)).
+Once all nodes have been added/updated, the transferable nodes should be recalculated by clicking on the `update transferable nodes` ![update transferrable nodes](images/buttonUpdateTransferrableNodes.png) button (step 1 of the [refresh calculation data section](#refresh-calculation-data)).
 
 ### Create a new agency
 
@@ -337,7 +337,7 @@ Click on the save ![save button](images/buttonSave.png) button to save the lines
 
 ### Create paths for the line
 
-Create a first path by clicking on the `New path` button that appeared under the line data
+Create a first path by clicking on the `New path` button that appeared under the line data.
 
 ![Lesson 7: new path button](images/lesson7_newPathButton.png)
 
@@ -373,7 +373,7 @@ The start time of trips will be displayed at the bottom of the panel.
 
 ![Lesson 7: generated timetables](images/lesson7_generatedTimetables.png)
 
-Once all timetables are ready, click on the `Save timetable` button, then `Close the timetable window`. 
+Once all timetables are ready, click on the `Save timetable` button, then `Close the timetable window`.
 
 ![Lesson 7: save timetables](images/lesson7_saveTimetables.png)
 
@@ -393,9 +393,9 @@ Save ![save button](images/buttonSave.png) the scenario.
 
 ### Validate results with routing
 
-Now that all the new transit data has been created, you can  save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the `save data to routing cache` ![save data to routing cache](images/buttonSaveDataToCache.png) button. This will automatically restart the routing engine.
+Now that all the new transit data has been created, you can save the data to cache for the routing engine (step 2 of the [refresh calculation data section](#refresh-calculation-data)) by clicking on the `save data to routing cache` ![save data to routing cache](images/buttonSaveDataToCache.png) button. This will automatically restart the routing engine.
 
-You can now go to the `Routing` or `Accessibility maps` panels, select the new scenario and calculate trips along the new metro line to see that it really takes the new line. You can then compare the results with the results from the previous scenario and see that there is a difference.
+You can now go to the `Routing` or `Accessibility map` panels, select the new scenario and calculate trips along the new metro line to see that it really takes the new line. You can then compare the results with the results from the previous scenario and see that there is a difference.
 
 ![Lesson 7: Routing with new lines](images/lesson7_routingWithNewLines.png)
 
@@ -411,7 +411,7 @@ GTFS can be used as an interchange format. To export as GTFS, go to the `Export 
 
 Give the file a name, then select the new agency from the list.
 
-Finally, click on the `prepare GTFS feed` button, to prepare the GTFS file.
+Finally, click on the `Prepare GTFS feed` button, to prepare the GTFS file.
 
 ![Lesson 8: prepare GTFS for export](images/lesson8_prepareGtfsForExport.png)
 
@@ -419,17 +419,17 @@ Once the GTFS file is ready, the `Download GTFS feed` button will appear in the 
 
 ![Lesson 8: download GTFS](images/lesson8_downloadGtfs.png)
 
-The new agency and services can now be imported in any tools supporting the Gtfs format.
+The new agency and services can now be imported in any tools supporting the GTFS format.
 
 ## Lesson 9: Batch calculations
 
-So far, we have learned how to import data, edit a transit network, test scenarios with individual trips or accessibility map calculations. But the strenght of tools like Transition is to be able to do calculations on a whole dataset, to compare scenarios between them. For example, with actual demand data, or origin/destination datasets, we can calculate the time it takes for the trip for transit, driving, cycling and walking.
+So far, we have learned how to import data, edit a transit network, test scenarios with individual trips or accessibility map calculations. But the strength of tools like Transition is to be able to do calculations on a whole dataset, to compare scenarios between them. For example, with actual demand data, or origin/destination datasets, we can calculate the time it takes for the trip for transit, driving, cycling and walking.
 
 For the sake of this tutorial, let's assume, we do not have any demand data and create a few trips that we'll use for batch calculation. Go to the `Routing` panels from the left menu. Once the origin and destination are selected, click on the `Save this route` button. You can give the route an optional name, in the `Route name` field, to more easily identify the significance of those coordinates. Select a few more pairs of origin and destination and each time, click on the `Save this route` button. 
 
 ![Lesson 9: save route in routing panel](images/lesson9_saveRouteInRoutingPanel.png)
 
-This will increment the routes counter in the `Saved routes (CSV)` button. Once there is a few routes selected, click on the button to download the csv file.
+This will increment the routes counter in the `Saved routes (CSV)` button. Once there are a few routes selected, click on the button to download the csv file.
 
 ![Lesson 9: download saved routes](images/lesson9_downloadSavedRoutes.png)
 
@@ -445,11 +445,11 @@ Select the csv file that you just downloaded. It will then ask for the fields in
 
 ![Lesson9: batch calculation configure demand](images/lesson9_configureDemand.png)
 
-Click on the upload file to upload the current file to server, then on the next button to continue to further parameterize the calculation. The next window is for the calculation parameters and is very similar to the single route parameters, seen in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes). Let's select a specific scenario to test it on. The yes/no choices under the scenario selection field are the following:
+Click on the upload file to upload the current file to server, then on the next button to continue to further parameterize the calculation. The next window is for the calculation parameters and is very similar to the single route parameters, as seen in [lesson 3](#lesson-3-test-the-imported-data-by-calcuting-routes). Let's select a specific scenario to test it on. The yes/no choices under the scenario selection field are the following:
 
 * Calculate with alternatives: If set to `yes`, there will be one alternative per line in the main result `csv` file.
 * Detailed result with steps: If set to `yes`, an additional `csv` result file will be produced where each alternative will be detailed, one line per step of the route for each alternative.
-* Include route geometries (geojson): If set to `yes`, a `geojson` file will be produced, with the geometries for each alternative.
+* Include route geometries (GeoJSON): If set to `yes`, a `geojson` file will be produced, with the geometries for each alternative.
 
 ![Lesson9: batch calculation configure analysis](images/lesson9_configureAnalysis.png)
 
@@ -467,11 +467,11 @@ Expand the `Display files` column to see the results of the calculation.
 
 ![Lesson 9: batch calculation display files](images/lesson9_expandDisplayFiles.png)
 
-Now, to test another scenario, you may either create a new calculation from scratch by clicking the `New calculation` button again, or click on the `Create new calculation from this one` button, next to the last calculation
+Now, to test another scenario, you may either create a new calculation from scratch by clicking the `New calculation` button again, or click on the `Create new calculation from this one` button, next to the last calculation.
 
 ![Lesson 9: batch calculation create new from calculation](images/lesson9_createNewFromCalculation.png)
 
-If doing so, the demand and analysis data will be pre-filled with the previous calculation's parameters. It will use the same input file. Click next to use the same demand data, then change the scenario and click `Next` to confirm the new calculation. Start the calculation by clicking the `Calculate` button.
+If doing so, the demand and analysis data will be pre-filled with the previous calculation's parameters. It will use the same input file. Click `Next` to use the same demand data, then change the scenario and click `Next` to confirm the new calculation. Start the calculation by clicking the `Calculate` button.
 
 You can now download the result files for each calculation, import it in various statistical analysis tools, compare the results, etc.
 
@@ -487,4 +487,4 @@ With this data, it is possible to use tools like spreadsheets, R studio or pytho
 
 Now we have manually defined our test data, but any dataset that contains origin and destination coordinates and trip times can be used for the calculations. The demand configuration supports many formats of geographical coordinates or time of trips.
 
-This concludes the Transition tutorial. We have experimented many of the available features. You may now continue your exploration of the tool. For any questions or issue, use the [Transition projects github repository](https://github.com/chairemobilite/transition).
+This concludes the Transition tutorial. We have experimented many of the available features. You may now continue your exploration of the tool. For any questions or issues, use the [Transition projects github repository](https://github.com/chairemobilite/transition).
