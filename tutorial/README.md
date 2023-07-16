@@ -1,8 +1,8 @@
 # Transition tutorial
 
-This tutorial will guide you through the first steps of using [Transition](http://transition.city) and help you discover what can be achieved with it.
+This tutorial will guide you through the first steps of using [Transition](http://transition.city) and help you discover what can be achieved with it. Transition is a web-based open source platform used for transit planning. You can create, import and edit transit networks, make various trip calculations, compare scenarios and analyze various metrics of the network.
 
-It supposes you have access to an instance of Transition, with access to a routing server (osrm) that includes the region that you want to analyze. See the [project's development page](http://github.com/chairemobilite/transition) for instructions to install Transition.
+This tutorial supposes you have access to an instance of Transition, with access to a routing server (osrm) that includes the region that you want to analyze. See the [project's development page](http://github.com/chairemobilite/transition) for instructions to install Transition.
 
 ## Outline
 
@@ -20,7 +20,7 @@ It supposes you have access to an instance of Transition, with access to a routi
 
 [GTFS](https://gtfs.org/) is an open standard format used to distribute transit information. Most agencies in the world use this format, that can be used by various tools to show transit data to users.
 
-Many transit feeds can be easily found in the [Open Mobility data](https://transitfeeds.com/) website, but the most up to date versions are recorded in the [Mobility Database catalogs](https://database.mobilitydata.org/). The transit agencies website may also contain this information. For example, the Montreal Transportation Society, whose data has been used to write this tutorial, can be found on [their website](https://www.stm.info/en/about/developers).
+Many transit feeds can be easily found in the [Open Mobility data](https://transitfeeds.com/) website, but the most up to date versions are recorded in the [Mobility Database catalogs](https://database.mobilitydata.org/). The transit agencies website may also contain this information. For example, the Société de transport de Montréal, the Montreal transit agency, whose data has been used to write this tutorial, can be found on [their website](https://www.stm.info/en/about/developers).
 
 To import the GTFS, click on the `Import from a GTFS feed` menu item on the left, towards the bottom of the list. It will open the import panel.
 
@@ -50,7 +50,7 @@ If there are errors, the import tab will remain open and display the errors and 
 
 *If you know that the GTFS is valid, don't hesitate to open a new issue on [the Transition github](https://github.com/chairemobilite/transition), with a description, the error message and a link to the GTFS file used.*
 
-But at this point, there should be data available in Transition!
+But at this point, there should be data available in Transition! You can see what was just imported, navigate the interface and scroll the map to see the various lines, paths, stop nodes, etc.
 
 ![Import GTFS complete](images/gtfsImportComplete.png)
 
@@ -90,7 +90,7 @@ Some data needs to be pre-calculated, to avoid lengthy calculations. When the tr
 
 2. Save data to cache for the routing engine: Transition uses [trRouting](https://github.com/chairemobilite/trRouting) as the routing engine. `trRouting` reads its data from a cache that needs to be manually updated when there are changes to the transit data in Transition.
 
-3. Start the routing engine: By default, when the instance starts, the routing engine is not running. It needs to be manually started. 
+3. Start the routing engine: By default, when the instance starts, the routing engine is not running. It needs to be manually started. Depending on the size of network, number of lines, paths, schedules, etc. the startup time may take from a few seconds to a few minutes. 
 
 Usually, the icons will be yellow when there are unprocessed data and will turn white once the action has been executed. The following screenshot shows the buttons for each step. *These manual steps are error prone and we are working to make them automatic.*
 
@@ -118,20 +118,27 @@ Finally, click on the ![calculation button](images/buttonSave.png) calculation b
 
 ![Lesson 3: display routing results](images/lesson3_displayRoutingResults.png)
 
-When selecting results with alternatives, you can navigate through the alternatives to see the detailed results for each.
+The routing engine uses a connection-scan algorithm, which returns in priority the path that arrives the earliest at destination, given the time of trip. It may not be the shortest path from origin to destination.
+
+In addition to the path with earliest arrival, Transition can calculate a set of alternatives, ie other sequences of lines, which allow to complete this trip in a time within a factor of 1.75 from the total travel time of the first route. When selecting results with alternatives, you can navigate through the alternatives to see the detailed results for each.
 
 ![Lesson 3: routing results with alternatives](images/lesson3_resultsWithAlternatives.png)
 
 ### Troubleshooting routing
 
-The routing engine returns no result? 
+The routing engine returns no result?
+
+If the server is not running, not completely started or failed to start, the error message will say the server is not running. To start it, click on the `start routing engine` ![start routing engine button](images/buttonRestartCalculator.png) button, and wait until it is completely started before making calculations.
+
+![Lesson 3: routing results error routing engine not running](images/lesson3_resultsErrorNotRunning.png)
+![Lesson 3: routing results error routing engine starting](images/lesson3_resultsErrorRestartInProgress.png)
 
 If there is no access, either at origin or destination (no stop nodes near those points), or if there is no service at origin or destination, the error message will be explicit enough. You can change the origin or destination for locations where there is service available.
 
 ![Lesson 3: routing results error no access](images/lesson3_resultsErrorNoAccess.png)
 ![Lesson 3: routing results error no service](images/lesson3_resultsErrorNoService.png)
 
-If the message says it returned no result, it will hint to look at some parameters values. You can try changing the travel time, access/egress, etc.
+If the message says it returned no result, it will hint to look at some parameters values. You can try changing the time of trip, total travel time, access/egress, etc.
 
 ![Lesson 3: routing results error no routing](images/lesson3_resultsErrorNoRouting.png)
 
